@@ -10,7 +10,13 @@ end
 
 file 'WebServer Default Page' do
   path 'c:\inetpub\wwwroot\default.htm'
-  content <h1> Hello,World!</h1>
+  content <<ENDIISPAGE
+  <h1> Hello,World!</h1>
+  <h2> Platform: #{node['Platform']}</h2>
+  <h2>Hostname:  #{node['hostname']}</h2>
+  <h2>Memory:    #{node['memory']['total']}</h2>
+  <h2>CPU:       #{node['cpu']['0']['mhz']}</h2>
+ENDIISPAGE
   action   :Create
 end
 
